@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.hiddengrave.hg</groupId>
+  <artifactId>HiddenGrave</artifactId>
+  <packaging>jar</packaging>
+  <version>1${maven.build.timestamp}</version>
+  <name>HiddenGrave</name>
+    <properties>
+    <maven.build.timestamp.format>yyMMdd-HHmm</maven.build.timestamp.format>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  <url>http://maven.apache.org</url>
+  <repositories>
+    <repository>
+      <id>mavenNatives</id>
+      <name>Maven Natives Repository</name>
+      <url>http://mavennatives.googlecode.com/svn/repo</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+  <dependencies>
+    <!-- Dependencies that have maven repos --> 
+    <dependency>
+      <groupId>org.lwjgl.lwjgl</groupId>
+      <artifactId>lwjgl</artifactId>
+      <version>2.9.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.l33tlabs.twl</groupId>
+      <artifactId>pngdecoder</artifactId>
+      <version>1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.lwjgl.lwjgl</groupId>
+      <artifactId>lwjgl_util</artifactId>
+      <version>2.9.0</version>
+    </dependency>
+    <dependency>
+        <groupId>org.bitlet</groupId>
+        <artifactId>weupnp</artifactId>
+        <version>0.1.2</version>
+    </dependency>
+    <dependency>
+        <groupId>org.luaj</groupId>
+        <artifactId>luaj-jse</artifactId>
+        <version>3.0</version>
+    </dependency>
+    <dependency>
+        <groupId>net.java.jinput</groupId>
+        <artifactId>jinput</artifactId>
+        <version>2.0.5</version>
+    </dependency>
+    <dependency>
+        <groupId>com.paulscode.soundsystem</groupId>
+        <artifactId>librarylwjglopenal</artifactId>
+        <version>0.0.1</version>
+    </dependency>
+    <dependency>
+        <groupId>com.paulscode.soundsystem</groupId>
+        <artifactId>soundsystem</artifactId>
+        <version>0.0.1</version>
+    </dependency>
+    <dependency>
+        <groupId>com.paulscode.soundsystem</groupId>
+        <artifactId>codecjogg</artifactId>
+        <version>0.0.1</version>
+    </dependency>
+    <dependency>
+        <groupId>com.paulscode.soundsystem</groupId>
+        <artifactId>codecjspeex</artifactId>
+        <version>0.0.1</version>
+    </dependency>
+
+  </dependencies>
+  <build>
+      <finalName>${artifactId}</finalName>
+      <defaultGoal>install</defaultGoal>
+      <!-- Where our source directory is -->
+      <sourceDirectory>${basedir}/src</sourceDirectory>
+      <plugins>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-javadoc-plugin</artifactId>
+              <version>2.10.3</version>
+              <configuration>
+                  <excludePackageNames>com.hiddengrave.common.*:com.hiddengrave.hg.*:com.hiddengrave.server.*</excludePackageNames>
+              </configuration>
+          </plugin>
+          <!--<plugin>
+              <groupId>com.github.wvengen</groupId>
+              <artifactId>proguard-maven-plugin</artifactId>
+              <version>2.0.6</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>net.sf.proguard</groupId>
+                        <artifactId>proguard-base</artifactId>
+                        <version>4.9</version>
+                        <scope>runtime</scope>
+                    </dependency>
+                </dependencies>
+              <executions>
+                 <execution>
+                     <phase>package</phase>
+                     <goals><goal>proguard</goal></goals>
+                 </execution>
+              </executions>
+              <configuration>
+                  <libs>
+                      <lib>${java.home}/lib/rt.jar</lib>
+                  </libs>
+                  <obfuscate>true</obfuscate>
+                  <options>
+                      <option>-keep public class com.hiddengrave.hg.HGThreadInterface { *; }</option>
+                      <option>-keep public class com.hiddengrave.hg.HGMainThread {public void startApp(java.io.File, java.lang.String, java.lang.String);}</option>
+                      <option>-keep public class com.hiddengrave.api.** { public protected *; }</option>
+                      <option>-keepclassmembers enum ** { *; }</option>
+                      <option>-dontoptimize</option>
+                      <option>-dontshrink</option>
+                      <option>-keepattributes RuntimeVisibleAnnotations,SourceFile,LineNumberTable,RuntimeVisibleParameterAnnotations,InnerClasses</option>
+                      <option>-repackageclasses 'com.hg.nope'</option>
+                  </options>
+                  <mapping_location>${maven.build.dir}</mapping_location>
+              </configuration>
+          </plugin>-->
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <version>2.3.2</version>
+              <configuration>
+                  <source>1.7</source>
+                  <target>1.7</target>
+              </configuration>
+          </plugin>
+      </plugins>
+  </build>
+</project>
+
